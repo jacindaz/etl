@@ -3,7 +3,7 @@ require 'pry'
 require 'json'
 require_relative 'database'
 
-class Importer
+class Importers::Postgres
   include Database
 
   def initialize
