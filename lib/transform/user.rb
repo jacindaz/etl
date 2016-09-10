@@ -3,7 +3,7 @@ require 'people'
 require 'pg'
 require_relative '../database'
 
-class Users
+class User
   include Database
 
   def self.run
