@@ -1,7 +1,7 @@
 require 'pry'
 
 require 'json'
-require_relative 'database'
+require_relative '../database'
 
 class Importers::Postgres
   include Database
