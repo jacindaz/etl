@@ -7,6 +7,9 @@ gem 'pg'
 gem 'sequel'
 gem 'sequel_pg'
 
+# MongoDB
+gem 'mongo_mapper'
+
 # Name parsing for user transform
 gem 'people'
 
