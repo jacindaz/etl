@@ -13,7 +13,7 @@ module Importers
       @file_path = file_path
     end
 
-    def import_csv
+    def mongo_import_csv_no_validations
       Database.mongo_mapper_db # create a connection to the db
 
       command = "mongoimport --db learnup --collection #{@file_name} --type csv --headerline --file #{@file_path}"
