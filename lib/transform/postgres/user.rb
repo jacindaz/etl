@@ -1,9 +1,11 @@
 require 'pry'
 require 'people'
 require 'pg'
-require_relative '../database'
 
-class User
+require_relative '../database'
+require_relative '../modules'
+
+class Transform::Postgres::User
   include Database
 
   def self.run

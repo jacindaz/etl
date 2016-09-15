@@ -1,8 +1,11 @@
 module Transform
+  module Mongo
+  end
+
+  module Postgres
+  end
 end
 
-module Mongo
-end
 
 module Importer
 end

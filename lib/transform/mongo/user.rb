@@ -1,4 +1,2 @@
-module Mongo
-  class User
-  end
+class Transform::Mongo::User
 end
