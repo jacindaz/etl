@@ -71,6 +71,6 @@ class Importer::Postgres
   end
 end
 
-# importer = Importer.new
+# importer = Importer::Postgres.new
 # importer.setup
 # importer.insert_data

@@ -34,5 +34,5 @@ class Importer::MongoDB
   end
 end
 
-m = Importers::MongoDB.new('client_two', '/Users/jacindazhong/Documents/jacinda/learnup_etl_version/data/client_two.csv')
+m = Importer::MongoDB.new('client_two', '/Users/jacindazhong/Documents/jacinda/learnup_etl_version/data/client_two.csv')
 puts m.mongo_import_csv_no_validations
