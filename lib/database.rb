@@ -12,7 +12,7 @@ module Database
 
   def self.mongo_mapper_db
     MongoMapper.connection = Mongo::Connection.new('localhost', 27017)
-    MongoMapper.database = "learnup"
+    MongoMapper.database = "learnup_dev"
 
   end
 end
