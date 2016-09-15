@@ -2,8 +2,9 @@ require 'pry'
 
 require 'json'
 require_relative '../database'
+require_relative '../modules'
 
-class Importers::Postgres
+class Importer::Postgres
   include Database
 
   def initialize
