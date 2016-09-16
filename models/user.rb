@@ -9,21 +9,37 @@ module MongoModels
     include ::MongoMapper::Document
     set_collection_name "learnup_users"
 
-    key :email, String, length: 254
+    key :email, String, length: { minimum: 4, maximum: 254, allow_nil: true }
+
     key :first_name, String
     key :middle_name, String
     key :last_name, String
+
+    validates_uniqueness_of :last_name, scope: [:first_name, :middle_name]
+    validate :validate_full_name
+
     key :prefix, String
     key :suffix, String
+
+    private
+
+    def validate_full_name
+      first_name_string = first_name || ''
+      middle_name_string = middle_name || ''
+      last_name_string = last_name || ''
+
+      # 225 is the guiness book of world records longest name
+      if (first_name_string + middle_name_string + last_name_string).length > 225
+        errors.add(:first_name, 'Length of first, middle, last combined must be less than 225 characters.')
+      end
+    end
   end
 end
 
 
 email_not_valid = 'tasdfasdfasdfasdfasdfasdfasdfasdfasdfsadfasdfasdfesdfasdfasdfasdfasdfsadfasdfsdfsadfsadfsadfsaasdfasdfasdfasdfasdfasdfasdfasdfasdfasdfasdfsadfasdfsadfasdfsdfasdfasdfasdfasaasdfasdfasdfsadfasdfsadfsadfasdfasdfasdfasdfasdfsadfasdfasdfasdfsadfsadfasdfasdfasdfdfdfst@test.com'
 valid_email = "test@test.com"
-# this works!!
-# interestingly this creates a collection called
-# "client_one_applicants"
-a = MongoModels::User.new(email: 'test_2@test.com', job: 'Cashier', status: 'Closed')
+
+a = MongoModels::User.new(first_name: 'Barnaby Marmaduke Aloysius Benjy Cobweb Dartagnan Egbert Felix Gaspar Humbert Ignatius Jayden Kasper Leroy Maximilian Neddy Obiajulu Pepin Quilliam Rosencrantz Sexton Teddy Upwood Vivatma Wayland Xylon Yardley Zachary Usansky', last_name: 'LastName', job: 'Cashier', status: 'Closed')
 Database.mongo_mapper_db
 a.save!
