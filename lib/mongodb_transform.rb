@@ -16,13 +16,13 @@ module Transform
     def self.setup
       db = Database.mongo_mapper_db
 
-      if MongoMapper.database.collection_names.include?("learnup")
+      if MongoMapper.database.collection_names.include?("learnup_users")
         MongoMapper.database.drop_collection("learnup_users")
       end
     end
 
     def self.run_transforms
-      Transform::Mongo::User.transform_client_one
+      Transform::Mongo::User.transform_data
     end
   end
 end
