@@ -8,11 +8,11 @@ require_relative '../../database'
 
 class Transform::Mongo::User
   def initialize
-    db = ::Mongo::Connection.new("localhost", 27017).db("learnup_dev")
-    Database.mongo_mapper_db
+    db_client = ::Mongo::Connection.new("localhost", 27017).db("client_data")
+    Database.mongo_mapper_db('learnup_etl')
 
-    @client_one_data = db.collection('client_one').find.to_a
-    @client_two_data = db.collection('client_two').find.to_a
+    @client_one_data = db_client.collection('client_one').find.to_a
+    @client_two_data = db_client.collection('client_two').find.to_a
 
     @progress_bar = ProgressBar.create(title: 'transforming Transform::Mongo::User', starting_at: 0, total: (@client_one_data + @client_two_data).length)
   end

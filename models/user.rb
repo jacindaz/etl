@@ -7,7 +7,7 @@ require_relative '../lib/database'
 module MongoModels
   class User
     include ::MongoMapper::Document
-    set_collection_name "learnup_users"
+    set_collection_name "user"
 
     key :email, String, length: { minimum: 4, maximum: 254, allow_nil: true }
 

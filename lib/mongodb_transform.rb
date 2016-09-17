@@ -14,7 +14,7 @@ module Transform
     end
 
     def self.setup
-      db = Database.mongo_mapper_db
+      db = Database.mongo_mapper_db("learnup_etl")
 
       if MongoMapper.database.collection_names.include?("learnup_users")
         MongoMapper.database.drop_collection("learnup_users")
