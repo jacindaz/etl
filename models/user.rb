@@ -9,13 +9,13 @@ module MongoModels
     include ::MongoMapper::Document
     set_collection_name "learnup_users"
 
-    key :email, String, length: { minimum: 4, maximum: 254, allow_nil: true }, unique: true
+    key :email, String, length: { minimum: 4, maximum: 254, allow_nil: true }
 
     key :first_name, String, allow_nil: true
     key :middle_name, String, allow_nil: true
     key :last_name, String, allow_nil: true
 
-    validates_uniqueness_of :last_name, scope: [:first_name, :middle_name]
+    # validates_uniqueness_of :last_name, scope: [:first_name, :middle_name]
     validate :validate_full_name
 
     key :prefix, String, allow_nil: true
