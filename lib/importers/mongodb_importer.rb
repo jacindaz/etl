@@ -8,16 +8,17 @@ require_relative '../database'
 require_relative '../modules'
 
 class Importer::MongoDB
-  def initialize(file_name, file_path)
+  def initialize(file_name, file_path, database)
     @file_name = file_name
     @file_path = file_path
+    @database = database
   end
 
   def mongo_import_csv_no_validations
-    Database.mongo_mapper_db # create a connection to the db
+    Database.mongo_mapper_db(@database) # create a connection to the db
     drop_collection_if_exists(@file_name)
 
-    command = "mongoimport --db learnup_dev --collection #{@file_name} --type csv --headerline --file #{@file_path}"
+    command = "mongoimport --db #{@database} --collection #{@file_name} --type csv --headerline --file #{@file_path}"
 
     Open3.popen3(command) do |stdin, stdout, stderr, wait_thr|
       puts "\nSTDOUT\n" + stdout.read
@@ -34,5 +35,5 @@ class Importer::MongoDB
   end
 end
 
-m = Importer::MongoDB.new('client_two', '/Users/jacindazhong/Documents/jacinda/learnup_etl_version/data/client_two.csv')
+m = Importer::MongoDB.new('client_two', '/Users/jacindazhong/Documents/jacinda/learnup_etl_version/data/client_two.csv', 'client_data')
 puts m.mongo_import_csv_no_validations

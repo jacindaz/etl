@@ -10,12 +10,12 @@ module Database
       ).extension :pg_array, :pg_hstore, :pg_json
   end
 
-  def self.mongo_mapper_db
+  def self.mongo_mapper_db(database)
     MongoMapper.connection = Mongo::Connection.new('localhost', 27017)
-    MongoMapper.database = "learnup_dev"
+    MongoMapper.database = database
   end
 
-  def self.mongo_db_connection
-    Mongo::Connection.new("localhost", 27017).db("learnup_dev")
+  def self.mongo_db_connection(database)
+    Mongo::Connection.new("localhost", 27017).db(database)
   end
 end
