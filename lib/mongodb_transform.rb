@@ -22,7 +22,7 @@ module Transform
     end
 
     def self.run_transforms
-      Transform::Mongo::User.transform_data
+      Transform::Mongo::User.new.transform_data
     end
   end
 end

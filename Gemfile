@@ -15,8 +15,9 @@ gem 'active_model_serializers'
 gem 'mongo_mapper'
 gem 'bson_ext'
 
-# Name parsing for user transform
-gem 'people'
+gem 'people' # Name parsing for user transform
+gem 'ruby-progressbar'
+
 
 group :development, :test do
   gem 'better_errors'
